@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+"""
+Gnuplot graph generator
+"""
+
 import json
 import pingparser
 import numpy
