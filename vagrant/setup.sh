@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Fix no-tty error during Vagrant provisioning
+sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile
+
 # Initial housekeepting
 export DEBIAN_FRONTEND=noninteractive
 
