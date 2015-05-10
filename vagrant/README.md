@@ -20,6 +20,6 @@ These instructions assume that Vagrant and Virtualbox are already installed.
 
 3) Once Vagrant has finished creating, booting, and provisioning the VM, log into the VM using `vagrant ssh`. Default user is `vagrant` and default password is `vagrant`.
 
-That's it, a fresh development VM is up and running. Have fun!
+That's it, a fresh VM is up and running. Have fun!
 
 To stop the VM, run `vagrant halt` in the directory where the Vagrant files are.
