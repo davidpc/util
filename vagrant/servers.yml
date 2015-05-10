@@ -1,0 +1,6 @@
+---
+- name: unicorn-dev-01
+  box: ubuntu/trusty64
+  ram: 1024
+  vcpu: 1
+  private_ip: 192.168.56.101
