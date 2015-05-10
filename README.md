@@ -1,6 +1,7 @@
-# util
+# Contents
+
 ## plotter
-### plotter.py
 Gnuplot graph generator
 
-**Usage:** plotter.py dataFile1 dataFile2 ... dataFileN outputFileBaseName
+## vagrant
+Vagrant ([http://www.vagrantup.com](http://www.vagrantup.com)) project to quickly and easily create a development environment with one or more Virtualbox VMs 
