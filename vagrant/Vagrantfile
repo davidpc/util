@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
     # Always use Vagrant's default insecure key
     config.ssh.insert_key = false
+    config.ssh.forward_x11 = true
   
     # Iterate through entries in YAML file to create VMs
     servers.each do |servers|
@@ -25,18 +26,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       srv.vm.box_check_update = false
       srv.vm.hostname = servers["name"]    
       srv.vm.box = servers["box"]
+      # srv.vm.box_url
+      # srv.box.box_download_insecure = true
       srv.vm.network "private_network", ip: servers["private_ip"]
-
+      
       srv.vm.provider "virtualbox" do |vb|
         vb.gui = true
         vb.name = servers["name"]
         vb.memory = servers["ram"]
         vb.cpus = servers["vcpu"]
+        # Use VBoxManage to customize the VM. For example to change memory:
+        # vb.customize ["modifyvm", :id, "--memory", "1024"]
       end # srv.vm.provider
       
       # Perform final provisioning activities
+      srv.vm.provision "fix-no-tty", type: "shell" do |s|
+        s.privileged = false
+        s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+      end
       srv.vm.provision "shell", path: "setup.sh", privileged: true
-    
+      
     end # config.vm.define
   end # servers.each
 end # Vagrant.configure
